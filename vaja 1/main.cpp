@@ -22,14 +22,13 @@ string romanSort(string inputText) {
 		B[i]++;
 	}
 	int counter = 0;
-	for (int i : B) {
-		if (i != 0) {
-			for (int j = 0; j < i; j++) {
-				output += i + " ";
+	for (int i = 0; i < B.size(); i++) {
+		if (B[i] != 0) {
+			for (int j = 0; j < B[i]; j++) {
+				output += to_string(i + minNum) + " ";
 			}
 		}
 	}
-	
 	return(output);
 }
 string countingSort(string inputText) {
@@ -62,11 +61,10 @@ int main(int argc, char* argv[]) {
 	}
 
 	if (sortType == "0") {
-		output = "Counting sort: \n" + countingSort(input);
+		output = countingSort(input);
 	}
 	else if (sortType == "1") {
-		output = "Roman sort: \n" + romanSort(input);
-		cout << output;
+		output = romanSort(input);
 	}
 	else {
 		cout << "invalid sort type. valid ones are 0 (Counting) and 1 (Roman)" << endl;
@@ -74,7 +72,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	try {
-		file.open("output.txt", ios::out);
+		file.open("C:/Users/Tilen/Desktop/sula naloge/4 semester/algoritmi v racunalniski praksi/vaja 1/output.txt", ios::out);
 		file << output;
 		file.close();
 	}
