@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\log.txt" />
+    <Text Include="..\output.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

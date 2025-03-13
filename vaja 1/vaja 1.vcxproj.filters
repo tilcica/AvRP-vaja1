@@ -25,5 +25,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\log.txt" />
+    <Text Include="..\output.txt" />
   </ItemGroup>
 </Project>
