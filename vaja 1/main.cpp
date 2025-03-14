@@ -32,7 +32,29 @@ string romanSort(string inputText) {
 	return(output);
 }
 string countingSort(string inputText) {
-	return(inputText);
+	vector<int> numbers;
+	string output = "";
+	istringstream iss(inputText);
+	int num;
+	while (iss >> num) {
+		numbers.push_back(num);
+	}
+	int minNum = *min_element(numbers.begin(), numbers.end());
+	int maxNum = *max_element(numbers.begin(), numbers.end());
+	vector<int> B(maxNum - minNum + 1, 0);
+	for (int i : numbers) {
+		i -= minNum;
+		B[i]++;
+	}
+	for (int i = 0; i < B.size(); i++) {
+		if (B[i] != 0) {
+			for (int j = 0; j < B[i]; j++) {
+				output += to_string(i + minNum) + " ";
+			}
+		}
+	}
+
+	return(output);
 }
 
 int main(int argc, char* argv[]) {
@@ -42,7 +64,7 @@ int main(int argc, char* argv[]) {
 		inputFile = argv[2];
 	}
 	else {
-		sortType = "1";
+		sortType = "0";
 		inputFile = "C:/Users/Tilen/Desktop/sula naloge/4 semester/algoritmi v racunalniski praksi/vaja 1/log.txt";
 	}
 
