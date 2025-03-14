@@ -41,19 +41,24 @@ string countingSort(string inputText) {
 	}
 	int minNum = *min_element(numbers.begin(), numbers.end());
 	int maxNum = *max_element(numbers.begin(), numbers.end());
-	vector<int> B(maxNum - minNum + 1, 0);
-	for (int i : numbers) {
-		i -= minNum;
-		B[i]++;
+	vector<int> C(maxNum - minNum + 1, 0);
+	vector<int> B(numbers.size(), 0);
+	for (int i = 0; i < numbers.size(); i++) {
+		numbers[i] -= minNum;
+		C[numbers[i]]++;
 	}
-	for (int i = 0; i < B.size(); i++) {
-		if (B[i] != 0) {
-			for (int j = 0; j < B[i]; j++) {
-				output += to_string(i + minNum) + " ";
-			}
-		}
+	for (int i = 1; i < C.size(); i++) {
+		C[i] = C[i - 1] + C[i];
 	}
 
+	for (int i = numbers.size()-1; i >= 0; i--) {
+		B[C[numbers[i]] - 1] = numbers[i];
+		C[numbers[i]] = C[numbers[i]] - 1;
+	}
+
+	for (int i : B) {
+		output += to_string(i + minNum) + " ";
+	}
 	return(output);
 }
 
